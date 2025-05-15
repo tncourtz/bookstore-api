@@ -67,12 +67,6 @@ jobs:
           TAG=$(git rev-parse --short HEAD)
           echo "TAG=$TAG" >> $GITHUB_ENV
 
-      - name: Configure Kubernetes
-        run: |
-          mkdir -p $HOME/.kube
-          echo "${{ secrets.KUBE_CONFIG }}" > $HOME/.kube/config
-          chmod 600 $HOME/.kube/config
-
       - name: Deploy with Helm
         run: |
           helm upgrade --install api ./helm --set image.repository=ghcr.io/${{ env.OWNER_LC }}/preparesh-bookstore-api --set image.tag=$TAG
