@@ -46,6 +46,11 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
+      - name: start minikube
+        uses: medyagh/setup-minikube@latest
+        with:
+          cache: false
+
       - name: Install kubectl
         uses: azure/setup-kubectl@v3
 
